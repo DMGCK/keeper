@@ -33,6 +33,9 @@ namespace keeper
       });
       services.AddScoped<IDbConnection>(x => CreateDbConnection());
 
+      services.AddTransient<ProfilesRepository>();
+      services.AddTransient<ProfilesService>();
+
       services.AddTransient<KeepsRepository>();
       services.AddTransient<KeepsService>();
 

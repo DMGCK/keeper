@@ -21,9 +21,9 @@ namespace keeper.Repositories
     {
       string sql = @"
       INSERT INTO keeps
-      (name, description, img, creatorId)
+      (name, description, img, creatorId, views, kept)
       VALUES
-      (@name, @description, @img, @creatorId);
+      (@name, @description, @img, @creatorId, 0, 0);
       SELECT LAST_INSERT_ID();";
 
       int newId = _db.ExecuteScalar<int>(sql, tData);
@@ -40,13 +40,33 @@ namespace keeper.Repositories
     public void Edit(Keep tData)
     {
       string sql = @"
-      UPDATE keeps
-      SET 
-      name = @name,
-      description = @description,
-      img = @img
-      WHERE id = @id;";
+        UPDATE keeps
+        SET 
+        name = @name,
+        description = @description,
+        img = @img
+        WHERE id = @id;";
       _db.Execute(sql, tData);
+    }
+
+    internal void DecrementKeepsCount(int? id)
+    {
+      string sql = @"
+        UPDATE keeps
+        SET 
+        kept = kept - 1
+        WHERE id = @id;";
+      _db.Execute(sql, new { id });
+    }
+
+    internal void IncrementKeepsCount(int? id)
+    {
+      string sql = @"
+        UPDATE keeps
+        SET 
+        kept = kept + 1
+        WHERE id = @id;";
+      _db.Execute(sql, new { id });
     }
 
     public List<Keep> GetAll()
@@ -62,6 +82,16 @@ namespace keeper.Repositories
         keep.creator = acc;
         return keep;
       }).ToList();
+    }
+
+    internal void IncreaseViews(int id)
+    {
+      string sql = @"
+        UPDATE keeps
+        SET 
+        views = views + 1
+        WHERE id = @id;";
+      _db.Execute(sql, new { id });
     }
 
     public Keep GetById(int id)

@@ -30,10 +30,11 @@ namespace keeper.Repositories
 
     internal void Delete(int id)
     {
+      System.Console.WriteLine("made it to repository");
       string sql = @"
-      DELETE FROM vaultkeep
-      WHERE id = @id LIMIT 1";
+      DELETE FROM vaultkeep WHERE id = @id LIMIT 1";
       _db.Execute(sql, new { id });
+      System.Console.WriteLine("the problem did not show up here");
     }
 
     internal void Edit(VaultKeep update)
@@ -59,7 +60,7 @@ namespace keeper.Repositories
       string sql = @"
       SELECT * FROM vaultkeep
       WHERE id = @id LIMIT 1";
-      return _db.Query<VaultKeep>(sql).FirstOrDefault();
+      return _db.Query<VaultKeep>(sql, new { id }).FirstOrDefault();
     }
   }
 }

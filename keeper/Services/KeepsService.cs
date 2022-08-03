@@ -41,6 +41,16 @@ namespace keeper.Services
 
     }
 
+    internal void IncrementKeeps(int? keepId)
+    {
+      _kr.IncrementKeepsCount(keepId);
+    }
+
+    internal void DecrementKeeps(int? keepId)
+    {
+      _kr.DecrementKeepsCount(keepId);
+    }
+
     public List<Keep> GetAll()
     {
       List<Keep> keeps = _kr.GetAll();
@@ -54,7 +64,14 @@ namespace keeper.Services
       {
         throw new Exception("Invalid ID");
       }
+      IncreaseViews(id);
+      keep.views += 1;
       return keep;
+    }
+
+    private void IncreaseViews(int id)
+    {
+      _kr.IncreaseViews(id);
     }
 
     public Keep GetByIdForValidate(int id, string userId)
