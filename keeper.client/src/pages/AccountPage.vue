@@ -17,9 +17,12 @@
       </div>
       <!-- Vaults -->
       <div class="col-12 my-5">
-        <div>
-          <div class="display-6 fw-bold text-decoration-underline">Vaults
-            <span> Add Button </span>
+        <div class="d-flex justify-content-between">
+          <div class="display-6 fw-bold text-decoration-underline">Vaults</div>
+          <div>
+            <button class="btn btn-outline-secondary">
+              New Vault
+            </button>
           </div>
         </div>
         <div>
@@ -29,10 +32,17 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row my-5">
           <div class="col-12">
 
-            <div class="display-6 fw-bold text-decoration-underline my-3">Keeps</div>
+            <div class="d-flex justify-content-between">
+              <div class="display-6 fw-bold text-decoration-underline">Keeps</div>
+              <div>
+                <button class="btn btn-outline-secondary">
+                  New Keep
+                </button>
+              </div>
+            </div>
             <div class="masonry-container ">
               <Keep v-for="k in keeps" :keep="k" :vaults="vaults" :vKeeps="vKeeps" class='masonry-item' />
             </div>

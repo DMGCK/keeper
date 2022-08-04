@@ -1,6 +1,5 @@
 Create  Keeps (Delete DOne)
 
-On the Vault Page, users can remove keeps from their vaults
 
 Create and Delete Vaults
 
@@ -29,7 +28,8 @@ The profile page adheres to mock
 All users have a public profile page
 The Vault Page shows only the keeps in that Vault
 The user should be pushed back to the home page when they attempt to open a Vault Page for a vault they do not have access to.
-Users can only Delete things they created (Keeps)
+Users can only Delete things they created 
+On the Vault Page, users can remove keeps from their vaults
 
 
 

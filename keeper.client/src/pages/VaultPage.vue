@@ -1,39 +1,35 @@
 <template lang="">
   <div>
-    <div>
 
-
-      <div class="d-flex justify-content-between m-3">
-        <div>
-
-          <div class="display-4 fw-bold">
-            {{vault.name}}
-          </div>
-          <div class="display-6 fst-italic">
-            Keeps: {{keeps.length}}
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-between m-3">
+            <div>
+              <div class="display-4 fw-bold">
+               {{vault.name}}
+              </div>
+              <div class="display-6 fst-italic">
+                Keeps: {{keeps.length}}
+              </div>
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+              <button @click="deleteVault" v-show="isThisYourVault" class="btn btn-outline-danger">
+                Delete Vault
+              </button>
+            </div>
           </div>
         </div>
-        <div class="d-flex flex-column justify-content-center">
-          <button @click="deleteVault" v-show="isThisYourVault" class="btn btn-outline-danger">
-            Delete Vault
-          </button>
+          <div class="col-12">
+            <div>
+              <div class="masonry-container ">
+                <Keep v-for="k in keeps" :keep="k" :vaults="vaults" :vKeeps="vKeeps" :activeVault="vault" class='masonry-item' />
+              </div>
+            </div>
+           </div>
+          </div>
         </div>
       </div>
-
-
-<!-- Masonry layout -->
-      <div>
-        <div class="masonry-container ">
-          <Keep v-for="k in keeps" :keep="k" :vaults="myVaults" :vKeeps="vKeeps" :activeVault="vault" class='masonry-item' />
-          <!-- class="col-md-3 col-6" -->
-
-        </div>
-      </div>
-
-
-
-    </div>
-  </div>
 </template>
 <script>
 import { useRoute } from "vue-router"
@@ -61,6 +57,7 @@ export default {
     })
 
     return {
+      vaults: computed(() => AppState.myVaults),
       keeps: computed(() => AppState.CurrentVaultKeeps),
       vault: computed(() => AppState.ActiveVault),
       isThisYourVault: computed(() => AppState.account.id == AppState.ActiveVault.creatorId),
@@ -77,7 +74,7 @@ export default {
           logger.log(error)
           Pop.toast(error, "error")
         }
-      }
+      },
     }
   }
 

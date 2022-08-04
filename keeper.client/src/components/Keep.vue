@@ -71,8 +71,8 @@
                     Delete
                   </button>
                 </div>
-                
-                <div v-if="account?.id == activeVault?.creatorId" class="d-flex flex-column justify-content-center"> 
+
+                <div @click="removeFromVault" v-if="account?.id == activeVault?.creatorId" class="d-flex flex-column justify-content-center"> 
                   <button class="btn btn-outline-danger" data-bs-toggle="modal" :data-bs-target="`#modal${keep.id}`">
                     Remove From Vault
                   </button>
@@ -110,7 +110,7 @@ export default {
     },
     vaults: {
       type: Array,
-      required: true
+      required: false
     },
     vKeeps: {
       type: Array,
@@ -127,7 +127,7 @@ export default {
       account: computed(() => AppState.account),
       activeKeep: computed(() => AppState.activeKeep),
       filteredVaults: computed(() => {
-        return props.vaults
+        return AppState.MyVaults
 
 
         //look thru list of vaults and disable vaults that share both ID's with any vKeeps item.
@@ -180,6 +180,18 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error');
           logger.error(error)
+        }
+      },
+      async removeFromVault() {
+        console.log(props.keep)
+        if (await Pop.confirm(`Are you sure you'd like to remove this keep from this vault?`)) {
+          try {
+            await vaultKeepsService.deleteVKeep(props.keep.vaultKeepId, props.keep.id)
+            Pop.toast("Removed From Vault");
+          } catch (error) {
+            Pop.toast(error, 'error');
+            logger.error(error)
+          }
         }
       }
     }
