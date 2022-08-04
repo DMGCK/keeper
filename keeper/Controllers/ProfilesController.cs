@@ -37,7 +37,7 @@ namespace keeper.Controllers
       try
       {
         List<Keep> keeps = _ps.GetProfileKeeps(id);
-        return keeps;
+        return Ok(keeps);
       }
       catch (Exception e)
       {

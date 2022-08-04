@@ -58,5 +58,14 @@ namespace keeper.Repositories
       WHERE creatorId = @id";
       return _db.Query<Vault>(sql, new { id }).ToList();
     }
+
+    internal List<VaultKeep> GetMyVaultKeeps(string id)
+    {
+      string sql = @"
+      SELECT *
+      FROM vaultkeep
+      WHERE creatorId = @id";
+      return _db.Query<VaultKeep>(sql, new { id }).ToList();
+    }
   }
 }

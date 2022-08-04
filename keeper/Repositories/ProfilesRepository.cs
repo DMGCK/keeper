@@ -27,8 +27,13 @@ namespace keeper.Repositories
       string sql = @"
       SELECT *
       FROM keeps k
+      JOIN accounts a ON k.creatorId = a.id
       WHERE k.creatorId = @id";
-      return _db.Query<Keep>(sql, new { id }).ToList();
+      return _db.Query<Keep, Account, Keep>(sql, (keep, acc) =>
+      {
+        keep.creator = acc;
+        return keep;
+      }, new { id }).ToList();
     }
 
     internal List<Vault> GetProfileVaults(string id)

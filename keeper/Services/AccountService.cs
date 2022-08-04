@@ -43,5 +43,11 @@ namespace keeper.Services
       List<Vault> vaults = _repo.GetMyVaults(id);
       return vaults;
     }
+
+    internal List<VaultKeep> GetMyVaultKeeps(string id)
+    {
+      List<VaultKeep> vaults = _repo.GetMyVaultKeeps(id);
+      return vaults;
+    }
   }
 }

@@ -50,6 +50,22 @@ namespace keeper.Controllers
         return BadRequest(e.Message);
       }
     }
+
+    [HttpGet("vaultkeeps")]
+    [Authorize]
+    public async Task<ActionResult<List<VaultKeep>>> GetMyVKeeps()
+    {
+      try
+      {
+        Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+        List<VaultKeep> vaults = _accountService.GetMyVaultKeeps(userInfo.Id);
+        return Ok(vaults);
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 
 

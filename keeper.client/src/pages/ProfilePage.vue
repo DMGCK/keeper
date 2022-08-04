@@ -1,5 +1,6 @@
-<template>
-  <div class="container">
+<template lang="">
+  <div>
+     <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="d-flex my-5">
@@ -42,48 +43,53 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
-
 <script>
-import { computed, onMounted, watchEffect } from 'vue'
-import { AppState } from '../AppState'
+import { computed, onMounted } from "vue"
+import { useRoute } from "vue-router"
+import { AppState } from "../AppState"
 import { keepsService } from "../services/KeepsService"
-import Pop from "../utils/Pop"
+import { vaultKeepsService } from "../services/VaultKeepsService"
+import { vaultsService } from "../services/VaultsService"
 import { logger } from "../utils/Logger"
+import Pop from "../utils/Pop"
+import { profilesService } from "../services/ProfilesService"
 export default {
-  name: 'Account',
+  name: "Profile",
   setup() {
+    const route = useRoute();
+
+    onMounted(async () => {
+      try {
+        await profilesService.GetActiveProfile(route.params.id)
+        await keepsService.GetActiveUserKeeps(route.params.id)
+        await vaultsService.GetActiveUserVaults(route.params.id)
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error, "error")
+      }
+    })
 
     return {
-      account: computed(() => AppState.account),
-      vaults: computed(() => AppState.MyVaults),
-      vKeeps: computed(() => AppState.MyVaultKeeps),
-      keeps: computed(() => AppState.MyKeeps)
+      account: computed(() => AppState.profile),
+      vaults: computed(() => AppState.ActiveVaults),
+      vKeeps: computed(() => AppState.ActiveVaultKeeps),
+      keeps: computed(() => AppState.ActiveUserKeeps)
     }
   }
+
 }
 </script>
-
-<style scoped>
-/* img {
-  max-width: 100px;
-} */
-
-
+<style scoped lang="scss">
 .masonry-container {
   columns: 6 200px;
   column-gap: 1rem;
-
-
-
 }
 
 .masonry-item {
   display: inline-block;
   width: 100%;
   text-align: center;
-
-
-
 }
 </style>
