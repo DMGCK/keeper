@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center display-5">
+      <div class="d-flex flex-column align-items-center display-3 custom-treat fw-bold">
         The Final
       </div>
     </router-link>
@@ -9,15 +9,16 @@
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" />
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+      <!-- <ul class="navbar-nav me-auto">
         <li>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
           </router-link>
         </li>
-      </ul>
+      </ul> -->
       <!-- LOGIN COMPONENT HERE -->
+      <div></div>
       <Login />
     </div>
   </nav>
@@ -44,5 +45,10 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+
+.custom-treat {
+  color: black;
+  -webkit-text-stroke: 1px rgb(255, 255, 255);
 }
 </style>

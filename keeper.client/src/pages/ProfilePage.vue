@@ -5,7 +5,7 @@
       <div class="col-12">
         <div class="d-flex my-5">
 
-          <img :src="account.picture" />
+          <img alt="Account picture" :src="account.picture" />
           <div class="display-4 fw-bold p-3">
             {{ account.name }}
           </div>

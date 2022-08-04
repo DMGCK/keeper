@@ -1,11 +1,11 @@
 <template lang="">
-  <div @click="profileLink" class="rounded selectable p-1 px-2">
+  <div title="Open profile" @click="profileLink" class="rounded selectable p-1 px-2">
     <div class="d-flex justify-content-apart">
       <div class="d-flex flex-column justify-content-center">
-        {{ creator.name }} 
+        {{ creator?.name }} 
       </div>
 
-      <img :src="creator.picture" class="profile-img" />
+      <img alt="Profile Image" :src="creator?.picture" class="profile-img" />
     </div>
   </div>
 </template>

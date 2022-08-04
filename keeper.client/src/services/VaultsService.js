@@ -35,6 +35,12 @@ class VaultsService {
     AppState.MyVaults = AppState.MyVaults.filter(mv => mv.id != vaultId)
   }
 
+  async createNewVault(vaultData) {
+    const res = await api.post(`api/vaults`, vaultData);
+    console.log('[CreateNewVault]', res.data);
+    AppState.MyVaults = [res.data, ...AppState.MyVaults]
+  }
+
 }
 
 export const vaultsService = new VaultsService();

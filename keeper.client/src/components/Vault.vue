@@ -1,7 +1,7 @@
 <template lang="">
   <div  class=" col-md-3 col-6 ">
               <div @click="navToVault" class="vault-card selectable">
-                <img :src="vault.img" class="rounded elevation-2 fit-this" />
+                <img alt="vault image" :src="vault.img" class="rounded elevation-2 fit-this" />
                 <div class="vault-text">
                   <div>{{vault.name}}</div>
                 </div>
