@@ -82,7 +82,7 @@ namespace keeper.Repositories
       // v null check
       Vault vault = GetById(vaultId, userId);
 
-      List<VaultKeepViewModel> vKeeps = _vr.GetKeepsByVaultId(vaultId);
+      List<VaultKeepViewModel> vKeeps = _vr.GetKeepsByVaultId(vaultId, userId);
       return vKeeps;
     }
   }

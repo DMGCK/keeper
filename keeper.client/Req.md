@@ -5,7 +5,6 @@
 UI adheres to all phases of CodeWorks Design Requirements
 
 
-Clicking on a keep card opens the keep in a modal which adheres to mock
 
 
 COMPLETED
@@ -31,6 +30,7 @@ Create and Delete Vaults
 Create  Keeps (Delete DOne)
 
 The user should be pushed back to the home page when they attempt to open a Vault Page for a vault they do not have access to.
+Clicking on a keep card opens the keep in a modal which adheres to mock
 
 
 

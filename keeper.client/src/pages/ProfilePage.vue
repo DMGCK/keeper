@@ -20,7 +20,6 @@
       <div class="col-12 my-5">
         <div>
           <div class="display-6 fw-bold text-decoration-underline">Vaults
-            <span> Add Button </span>
           </div>
         </div>
         <div>

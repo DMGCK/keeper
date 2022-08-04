@@ -20,7 +20,7 @@
         <div class="d-flex justify-content-between">
           <div class="display-6 fw-bold text-decoration-underline">Vaults</div>
           <div>
-            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#vault">
+            <button class="btn btn-outline-dark btn-primary elevation-1" data-bs-toggle="modal" data-bs-target="#vault">
               New Vault
             </button>
           </div>
@@ -38,7 +38,8 @@
             <div class="d-flex justify-content-between">
               <div class="display-6 fw-bold text-decoration-underline">Keeps</div>
               <div>
-                <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#keep">
+                <button class="btn btn-outline-dark btn-primary elevation-1" data-bs-toggle="modal"
+                  data-bs-target="#keep">
                   New Keep
                 </button>
               </div>

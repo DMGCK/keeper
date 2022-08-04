@@ -87,12 +87,13 @@ namespace keeper.Repositories
     }
 
     internal List<VaultKeepViewModel> GetKeepsByVaultId(int vaultId)
+    // TODO UNSCREW THE SQL
     {
       string sql = @"
       SELECT 
         k.*,
         a.*,
-        vk.id
+        vk.id AS vaultKeepId
       FROM vaultkeep vk
       JOIN keeps k ON k.id = vk.keepId
       JOIN accounts a ON k.creatorId

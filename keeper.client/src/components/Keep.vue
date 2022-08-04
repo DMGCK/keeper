@@ -42,7 +42,7 @@
 <div class="container">
           <div class="row">
             <div class="col-6">
-              <img alt="keep image" :src="keep.img" class="img-fluid rounded elevation-1 my-2" />
+              <img alt="Keep Image" :src="keep.img" class="img-fluid rounded elevation-1 my-2" />
             </div>
             <div class="col-6 d-flex flex-column justify-content-between">
               <div class="row">
@@ -94,10 +94,10 @@
 
             </div>
             
-            <div class="col-12">
+                <div class="col-12 d-flex justify-content-between my-2">
                 <!-- REMOVE FROM VAULT BUTTON -->
               <div class="d-flex justify-content-center"> 
-                <div>
+                <div class="d-flex flex-column justify-content-center">
                 <div title="Remove from vault" @click="removeFromVault" v-if="account?.id == activeVault?.creatorId && activeVault?.id != undefined" class="d-flex flex-column justify-content-center"> 
                     <button class="btn btn-outline-danger" data-bs-toggle="modal" :data-bs-target="`#modal${keep.id}`">
                       Remove From Vault
@@ -105,13 +105,12 @@
                 </div>
                 </div>
               </div>
-            </div>
 
 
                 <!-- CREATOR OBJECT -->
-                <div class="col-12 d-flex justify-content-center my-2">
                   <Creator :creator="keep.creator" data-bs-toggle="modal" :data-bs-target="`#modal${keep.id}`"/>
 
+            </div>
                 </div>
 
               </div>
@@ -126,7 +125,6 @@
   </div>
 </div>
     </div>
-  </div>
 </template>
 <script>
 import { applyStyles } from "@popperjs/core";
@@ -211,7 +209,7 @@ export default {
         }
       },
       async removeFromVault() {
-        console.log(props.keep)
+        console.log("[RemoveFromVault]", props.keep)
         if (await Pop.confirm(`Are you sure you'd like to remove this keep from this vault?`)) {
           try {
             await vaultKeepsService.deleteVKeep(props.keep.vaultKeepId, props.keep.id)
