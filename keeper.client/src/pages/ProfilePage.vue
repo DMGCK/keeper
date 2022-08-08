@@ -34,7 +34,7 @@
 
             <div class="display-6 fw-bold text-decoration-underline my-3">Keeps</div>
             <div class="masonry-container ">
-              <Keep v-for="k in keeps" :keep="k" :vaults="vaults" :vKeeps="vKeeps" class='masonry-item' />
+              <Keep v-for="k in keeps" :keep="k" :vaults="vaults" class='masonry-item' />
             </div>
           </div>
         </div>

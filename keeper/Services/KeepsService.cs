@@ -27,9 +27,15 @@ namespace keeper.Services
       _kr.Delete(id);
     }
 
-    public Keep Edit(Keep tData, int id)
+    public Keep Edit(Keep tData, string userId)
     {
-      Keep original = GetByIdForValidate(id, tData.creatorId);
+      Keep original = GetByIdForValidate(tData.id, userId);
+
+      if (original.creatorId != userId)
+      {
+        throw new Exception("Invalid User");
+      }
+
 
       original.name = tData.name ?? original.name;
       original.description = tData.description ?? original.description;
@@ -77,6 +83,8 @@ namespace keeper.Services
     public Keep GetByIdForValidate(int id, string userId)
     {
       Keep keep = _kr.GetById(id);
+      System.Console.WriteLine($"USER ID from request {userId}");
+      System.Console.WriteLine($"Creator ID {keep.creatorId}");
       if (keep == null)
       {
         throw new Exception("Invalid ID");
@@ -86,6 +94,11 @@ namespace keeper.Services
         throw new Exception("Invalid User");
       }
       return keep;
+    }
+
+    public Keep Edit(Keep tData, int id)
+    {
+      throw new NotImplementedException();
     }
   }
 }

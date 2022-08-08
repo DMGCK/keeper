@@ -90,18 +90,19 @@ namespace keeper.Repositories
     // TODO UNSCREW THE SQL
     {
       string sql = @"
-      SELECT 
-        k.*,
-        a.*,
-        vk.id AS vaultKeepId
-      FROM vaultkeep vk
-      JOIN keeps k ON k.id = vk.keepId
-      JOIN accounts a ON k.creatorId
-      WHERE vk.vaultId = @vaultId";
-      return _db.Query<VaultKeepViewModel, Account, int, VaultKeepViewModel>(sql, (keep, acc, vkId) =>
+      SELECT
+      k.id,
+    vk.id AS vaultKeepId,
+    vk.creatorId AS vaultKeepCreatorId,
+    k.name, k.description, k.img, k.views, k.kept, k.creatorId,
+    a.*
+FROM vaultkeep vk
+    JOIN keeps k ON k.id = vk.keepId
+    JOIN accounts a ON a.id = k.creatorId
+WHERE vk.vaultId = @vaultId;";
+      return _db.Query<VaultKeepViewModel, Account, VaultKeepViewModel>(sql, (keep, acc) =>
       {
         keep.creator = acc;
-        keep.vaultKeepId = vkId;
         return keep;
       }, new { vaultId }).ToList();
 
